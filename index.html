@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👵 誼慧姥姥．老會計健康精算庫</title>
+    <style>
+        :root {
+            --primary-color: #8e44ad;
+            --secondary-color: #2c3e50;
+            --bg-color: #f9f9fb;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--secondary-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 11fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        button {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(142, 68, 173, 0.2);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(142, 68, 173, 0.4);
+        }
+        button:active {
+            transform: translateY(1px);
+        }
+        .output-section {
+            margin-top: 25px;
+            display: none;
+        }
+        .platform-card {
+            background: #f8f9fa;
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 10px 10px 0;
+            position: relative;
+        }
+        .platform-badge {
+            background: var(--secondary-color);
+            color: white;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #bdc3c7;
+            font-size: 12px;
+            padding: 5px 10px;
+            box-shadow: none;
+        }
+        .copy-btn:hover {
+            background: #95a5a6;
+            box-shadow: none;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #34495e;
+        }
+        @media (max-width: 600px) {
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>👵 誼慧姥姥．老會計健康精算庫</h1>
+    <div class="subtitle">💡 姥姥，今天準備用妳的「專業老算盤」幫社群算哪一筆健康帳呢？</div>
+    
+    <!-- 四格按鈕區 -->
+    <div class="button-grid">
+        <button onclick="generateCopy(1)">🎯 老會計查帳 / 找回健康</button>
+        <button onclick="generateCopy(2)">🌸 姥姥私房話 / 告別數羊</button>
+        <button onclick="generateCopy(3)">💡 成分大解密 / 科學營養</button>
+        <button onclick="generateCopy(4)">🤝 精算第二人生 / 退休創業</button>
+    </div>
+
+    <!-- 文案輸出區 -->
+    <div id="outputSection" class="output-section">
+        <div class="platform-card">
+            <span class="platform-badge" style="background-color: #3b5998;">Facebook 大格局長文版</span>
+            <button class="copy-btn" onclick="copyText('fbText')">複製文案</button>
+            <pre id="fbText"></pre>
+        </div>
+        <div class="platform-card">
+            <span class="platform-badge" style="background-color: #e1306c;">Instagram 網紅金句版</span>
+            <button class="copy-btn" onclick="copyText('igText')">複製文案</button>
+            <pre id="igText"></pre>
+        </div>
+        <div class="platform-card">
+            <span class="platform-badge" style="background-color: #000000;">Threads 總監硬核短文版</span>
+            <button class="copy-btn" onclick="copyText('thText')">複製文案</button>
+            <pre id="thText"></pre>
+        </div>
+    </div>
+</div>
+
+<script>
+    const database = {
+        1: {
+            fb: `【做會計30年，這點健康帳我還算不精嗎？】\n\n很多人天天記公帳、記私帳，卻從來不記自己身體的「折舊率」。\n\n我做會計做了30年，最看不得的就是資產負債表不平衡。但我發現現代人最誇張的赤字，往往不是在銀行，而是在自己的身體。天天加班、外食、熬夜，在身體的資產負債表上，這叫做「惡意透支」。\n\n很多人跟我說：「姥姥，保養品很貴耶！」\n我聽了都想翻白眼。你現在省下精準營養的預算，難道是要留著以後貼補醫院的折舊費嗎？身體是我們這輩子住最久、也唯一持有的房子，如果天天不維護，鋼筋（肌肉）流失、水分代謝下降，這棟房子遲早要變成「報廢車」。\n\n別再欺騙自己還年輕了，算盤打得再響，身體垮了也是白忙一場。私訊姥姥，讓我用30年看成分、審帳目的嚴格眼光，幫你算算你的身體赤字，幫你做一份高CP值的健康加法工程！\n\n#老會計查帳 #健康管理 #Ulife系統 #健康資產表 #不看老闆臉色`,
+            ig: `💡 算盤打得再響，身體赤字也是白忙！\n\n做會計30年，我最看不得資產負債表不平衡。\n但看看你的作息，熬夜、外食、不運動…\n這在身體的帳目上，叫做「惡意透支」！\n\n別跟我說保養太貴，\n你現在省下的健康預算，\n難道是要留給以後的醫院折舊費嗎？\n\n身體是你唯一持有的房子，別把它折舊成報廢車。\n\n動動手指私訊姥姥，\n我用30年審帳的眼光，幫你精算身體健康帳！\n\n#老會計查帳 #生活質感 #健康理財 #細胞營養 #生活大姐大 #健康加法`,
+            th: `我做會計30年，全台灣最會算帳的可能不是我，但最會幫你身體算赤字的絕對是我。天天熬夜外食，你以為你賺到了時間，但在身體的資產負債表上，你這叫惡意倒閉！別再省那點科學營養的錢了，你這是在為未來的醫院賺折舊費。看不懂自己身體赤字的，底下留言「查帳」，姥姥幫你打算盤。 #老會計毒舌 #健康帳目 #敢講真話`
+        },
+        2: {
+            fb: `【姥姥私房話：以前數羊數到想烤羊，現在倒頭秒睡的秘密】\n\n如果你懂那種深夜躺在床上、看著天花板，全台灣都睡了只有你還清醒的痛苦，那你一定要聽聽我這個老會計的真心話。\n\n以前因為工作高壓、帳目繁雜，我飽受長期嚴重的失眠困擾。每天晚上躺在床上，數羊數到幾千隻，越數越生氣，氣到想把那些羊抓來做成烤全羊！白天上班沒精神，吃一堆保健食品也沒用，整個人在身體的帳本上天天都在赤字邊緣崩塌。\n\n直到我遇到了高階草本科學營養調理。一開始我這個老會計也是滿臉懷疑，天天抱著放大鏡看成分，甚至去審計背後的科學數據。後來，我決定給自己一個月的時間「進場維修」。\n\n結果呢？現在的我倒頭秒睡，早上醒來神清氣爽，活得像20幾歲的少女一樣有活力！睡眠一好，身體的代謝跟著好，這才叫最高投資報酬率。今晚還在失眠、數羊到發瘋的朋友，別客氣，私訊姥姥，我把這套讓我告別數羊的科學營養調理秘笈毫不保留地送給你！\n\n#告別數羊 #失眠救星 #30年老會計親身見證 #科學營養調理 #刀子嘴豆腐心`,
+            ig: `💡 以前數羊數到想烤羊，現在倒頭秒睡的秘密！\n\n做會計30年帳目太燒腦，以前我長期嚴重失眠，\n每晚在床上看天花板，越數羊越清醒，氣到發瘋！\n\n直到我遇到高階草本科學營養調理，\n用我審帳的嚴格標準查了成分，決定進場維修…\n\n現在？我天天倒頭秒睡，活力飽滿到像個少女！\n\n睡眠不好，賺再多錢都是折舊。\n還在深夜數羊的，趕快私訊姥姥，\n我把這套告別失眠的精準營養調理秘密分享給你！\n\n#告別數羊 #睡眠美學 #老會計逆襲 #草本營養 #深夜陪伴 #女生要活得有底氣`,
+            th: `以前長期失眠，每晚躺在床上數羊，數到幾千隻的時候我心裡都在想怎麼把這群羊做成孜然烤全羊。後來靠老會計挑剔的眼光抓到「草本科學營養調理」這個外掛，現在倒頭秒睡。睡眠差，身體折舊率就高。今晚還在睜眼看天花板的，私訊姥姥，我幫你把這筆失眠爛帳給結了。 #失眠救星 #老會計日常 #秒睡密碼`
+        },
+        3: {
+            fb: `【成分大解密：不要為了省小錢，把身體折舊成報廢車】\n\n我在保健食品公司待了30年，看過的成分表比你看過的連續劇還多。今天姥姥要來講句毒辣的真話：全台灣有九成的人，買保養品都在交「智商稅」。\n\n很多人看廣告吹得天花華麗，就盲目買一堆回家吃，結果錢花了，身體根本沒吸收。這在會計學上叫做「高投入、零產出」，完全是不合格的投資。真正高投資報酬率的健康，講求的是「細胞層級的精準調理」。\n\n我當初就是用這算盤去審查草本科學營養，確認它能在人體結構上真正做加法、補足細胞微量建材，我才點頭答應。健康不是盲目節食或亂吃，而是靠科學的營養配比，把代謝拉起來、把精力補回去。\n\n別再盲目試錯了，你省下來的那些小錢，根本不夠付你身體結構報廢的維修費。私訊姥姥，讓我用30年保健食品公司的實戰眼光，幫你做一次最精準、最高CP值的成分大解密！\n\n#成分大解密 #科學營養學 #老會計精算 #細胞層級調理 #不交智商稅 #Ulife`,
+            ig: `💡 不要為了省小錢，把身體折舊成報廢車！\n\n在保健食品公司當了30年會計，\n我看過的成分表比你吃過的飯還多。\n今天講真話：很多人買保養品都在交智商稅！\n\n買了一堆廣告款，身體根本沒吸收，\n這在會計學上叫「高投入、零產出」！\n\n真正聰明的投資，是細胞層級的「草本科學營養」。\n精準配比，拉起代謝、補足體力！\n\n想知道你的保養品到底有沒有效？\n私訊姥姥，我用30年專業幫你成分大解密！\n\n#成分大解密 #高CP值養生 #拒絕智商稅 #老會計專業 #科學減脂 #健康工程`,
+            th: `在保健食品公司當30年會計，看過無數配方。聽姥姥一句勸：市面上九成保養品你吃了都在浪費錢，高投入零產出，完全是呆帳！真正有用的保養，要像精算師一樣做到細胞層級的精準草本營養。想知道自己有沒有在交智商稅？留言「看成分」，老會計幫你親自審計。 #科學營養 #成分揭秘 #不看廣告看成分`
+        },
+        4: {
+            fb: `【精算第二人生：30年老會計的退休創業活路】\n\n很多人問我：「姥姥，妳都快退休了，為什麼不回家安穩享清福，還要折騰什麼 Ulife 健康事業系統？」\n\n老話一句，因為我會算帳。我算過一筆帳：傳統的退休叫「坐吃山空」，在財務報表上叫做資產逐年遞減，而且每天看老闆、看勞保局臉色，生活質量根本沒有底氣。\n\n我現在經營這個事業，是在規劃我的「第二人生雙成長模式」。我不賺朋友差價、不需要扛龐大的囤貨風險，我只是把我自己透過科學營養改善失眠、找回活力的真實生命經驗，像布施一樣分享出去。我串聯美業、結合異業合作，把想要健康、想多賺錢的夥伴聚在一起團隊作戰。\n\n這是一個高產出、低風險、還能賺到時間與財富自由的頂級商業模式。如果你也快退休了、或是下班後想找個靠譜的副業，別再盲目去外面投資被割韭菜了。來找老會計聊聊，我手把手用我的商務經驗幫你精算出一條優雅創業的活路！\n\n#精算第二人生 #退休創業 #Ulife健康事業系統 #低風險副業 #時間自由 #活得有底氣`,
+            ig: `💡 精算第二人生！30年老會計的退休創業活路\n\n快退休了，為什麼不回家享清福？\n因為我算過帳：傳統退休叫資產遞減，生活沒底氣！\n\n我現在經營 Ulife 系統，\n是在打造「健康與事業雙成長模式」。\n不賺朋友差價、零風險、不用看老闆臉色！\n\n我只是把改善失眠、重獲活力的經驗分享出去，\n串聯異業，帶著一夥人一起優雅賺錢。\n\n如果你也想在下班後或退休前找個低風險副業，\n私訊姥姥，我幫你精算出一條財富自由的活路！\n\n#精算第二人生 #退休不退步 #低風險創業 #Ulife系統 #女性自主 #生活質感`,
+            th: `傳統退休在會計學上叫「資產逐年折舊、坐吃山空」，完全沒有安全感。我快退休了還在拼 Ulife 系統，因為這是一筆穩賺不賠的第二人生投資。不賺朋友差價、零庫存風險，靠分享健康就能賺到時間自由。想跟老會計一起翻轉財務、優雅躺賺的，私訊姥姥，我幫你審查這個商業模式。 #第二人生 #高財商退休 #低風險創業`
+        }
+    };
+
+    function generateCopy(buttonId) {
+        // 顯示輸出區域
+        document.getElementById('outputSection').style.display = 'block';
+        
+        // 帶入文字
+        document.getElementById('fbText').innerText = database[buttonId].fb;
+        document.getElementById('igText').innerText = database[buttonId].ig;
+        document.getElementById('thText').innerText = database[buttonId].th;
+        
+        // 滾動到輸出區域
+        document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyText(elementId) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert('文案已成功複製到剪貼簿！');
+        }).catch(err => {
+            alert('複製失敗，請手動全選複製。');
+        });
+    }
+</script>
+
+</body>
+</html>
